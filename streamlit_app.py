@@ -49,9 +49,6 @@ try:
 except URLError as e:
   streamlit.error()
 
-# STOP: Code past this point is not viewable by users
-streamlit.stop()
-
 # Snowflake Connector
 fruit_wanted = streamlit.text_input('What fruit would you like to add?')
 streamlit.text('Thank you for adding ' + fruit_wanted + ' to the list')
