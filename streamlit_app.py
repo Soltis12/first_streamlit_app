@@ -23,13 +23,12 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 # Display list of fruits
 streamlit.dataframe(fruits_to_show)
 
-# Fruit Advice
-fruit_entry = steamlit.text_input('What fruit would you like information about?','kiwi')
-
+# Fruit Advice header
 streamlit.header('FruityVice Fruit Advice!')
 
-import requests
 # Scrape data about a chosen fruit
+import requests
+fruit_entry = steamlit.text_input('What fruit would you like information about?', 'kiwi')
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_entry)
 
 # Convert data into a normalized JSON
