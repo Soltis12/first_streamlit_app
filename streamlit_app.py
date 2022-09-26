@@ -1,5 +1,11 @@
-# Show text for food choices
+# Import required packages
 import streamlit
+import pandas
+import requests
+import snowflake.connector
+from urllib.error import URLError
+
+# Show the menu
 streamlit.title('Menu for Loaded')
 
 streamlit.header('Proper Dirty Fries')
@@ -12,7 +18,6 @@ streamlit.text('🦆 Duck, Mushrooms, Bean Sprouts and Hoisin Sauce')
 streamlit.header('🏗️ Build your own Fruit Smoothie')
 
 # Import Fruit list
-import pandas
 my_fruit_list = pandas.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt")
 my_fruit_list = my_fruit_list.set_index('Fruit')
 
@@ -27,7 +32,6 @@ streamlit.dataframe(fruits_to_show)
 streamlit.header('FruityVice Fruit Advice!')
 
 # Scrape data about a chosen fruit
-import requests
 fruit_entry = streamlit.text_input('What fruit would you like information about?','kiwi')
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_entry)
 
@@ -41,8 +45,6 @@ streamlit.dataframe(fruityvice_normalized)
 streamlit.stop
 
 # Snowflake Connector
-import snowflake.connector
-
 fruit_wanted = streamlit.text_input('What fruit would you like to add?')
 streamlit.text('Thank you for adding ' + fruit_wanted + ' to the list')
 
