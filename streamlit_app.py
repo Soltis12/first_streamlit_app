@@ -46,7 +46,7 @@ streamlit.text('Thank you for adding ' + fruit_wanted + ' to the list')
 # Snowflake Testing
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
-my_cur.execute("SELECT * FROM FRUIT_LOAD_LIST")
+my_cur.execute("INSERT INTO FROM FRUIT_LOAD_LIST VALUES ('fruit_wanted')")
 my_data_row = my_cur.fetchall()
 streamlit.text("Items in the table Fruit Load List:")
 streamlit.dataframe(my_data_row)
