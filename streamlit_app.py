@@ -24,11 +24,13 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 streamlit.dataframe(fruits_to_show)
 
 # Fruit Advice
+fruit_entry = steamlit.text_input('What fruit would you like information about?','kiwi')
+
 streamlit.header('FruityVice Fruit Advice!')
 
 import requests
-# Scrape data about a fruit
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+# Scrape data about a chosen fruit
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_entry)
 
 # Convert data into a normalized JSON
 fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
