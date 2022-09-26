@@ -35,4 +35,4 @@ fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_e
 fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 
 # Display the normalizd JSON as a DataFrame
-streamlit.dataframe(fruityvice_normalised)
+streamlit.dataframe(fruityvice_normalized)
