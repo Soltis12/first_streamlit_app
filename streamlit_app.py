@@ -1,5 +1,5 @@
 import streamlit
-import pandas as pd
+import pandas
 
 # Streamlit Headings
 streamlit.title('Proper Good Filth Food')
