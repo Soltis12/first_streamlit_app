@@ -10,6 +10,18 @@ def get_fruityvice_data(this_fruit_choice):
     fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
     return fruityvice_normalized
 
+# Define Get Fruit Load List
+def get_fruit_load_list()
+    with my_cnx.cursor() as my_cur:
+        streamlit.header("The Fruit List contains:")
+        streamlit.dataframe(my_data_rows)
+
+# Define Function for Adding New Rows
+def insert_row_snowflake(new_fruit):
+    with my_cnx.cursor() as my_cur:
+        my_cur.execute("INSERT INTO FRUIT_LOAD_LIST VALUES ('" + new_fruit + "')")
+        return streamlit.write("Thanks for adding " + add_my_fruit)
+
 # Streamlit Headings
 streamlit.title('Proper Good Filth Food')
 streamlit.header('Takeaway Menu')
@@ -42,14 +54,16 @@ try:
 except URLError as e:
   streamlit.error()
 
-# Snowflake Connection
-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-my_cur = my_cnx.cursor()
-my_cur.execute("SELECT * FROM FRUIT_LOAD_LIST")
-my_data_rows = my_cur.fetchall()
-streamlit.header("The Fruit List contains:")
-streamlit.dataframe(my_data_rows)
+# Add a button to load the Fruit Data
+if streamlit.button('Get Fruit Load List'):
+    my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+    my_data_rows = get_fruit_load_list()
+    streamlit.dataframe(my_data_rows)
 
 add_my_fruit = streamlit.text_input('What fruit would you like to add?')
-my_cur.execute("INSERT INTO FRUIT_LOAD_LIST VALUES ('" + add_my_fruit + "')")
-streamlit.write("Thanks for adding " + add_my_fruit)
+if streamlit.button('Add Fruit to List'):
+    my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+    back_from_function = insert_row_snowflake(add_my_fruit)
+    streamlit.text_input(back_from_function)
+
+
