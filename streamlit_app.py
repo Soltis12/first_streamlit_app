@@ -2,6 +2,7 @@ import streamlit
 import pandas
 import requests
 import snowflake.connector
+from urllib.error import URLError
 
 
 # Streamlit Headings
@@ -43,4 +44,5 @@ streamlit.header("The Fruit List contains:")
 streamlit.dataframe(my_data_rows)
 
 add_my_fruit = streamlit.text_input('What fruit would you like to add?')
-streamlit.text("Thanks for adding " + add_my_fruit)
+my_cur.execute("INSERT INTO FRUIT_LOAD_LIST VALUES (" + add_my_fruit + ")"
+streamlit.write("Thanks for adding " + add_my_fruit)
