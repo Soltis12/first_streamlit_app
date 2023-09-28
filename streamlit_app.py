@@ -11,7 +11,7 @@ def get_fruityvice_data(this_fruit_choice):
     return fruityvice_normalized
 
 # Define Get Fruit Load List
-def get_fruit_load_list()
+def get_fruit_load_list():
     with my_cnx.cursor() as my_cur:
         streamlit.header("The Fruit List contains:")
         streamlit.dataframe(my_data_rows)
