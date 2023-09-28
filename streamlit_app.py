@@ -14,7 +14,7 @@ def get_fruityvice_data(this_fruit_choice):
 def get_fruit_load_list():
     with my_cnx.cursor() as my_cur:
         streamlit.header("The Fruit List contains:")
-        streamlit.dataframe(my_data_rows)
+        return streamlit.dataframe(my_data_rows)
 
 # Define Function for Adding New Rows
 def insert_row_snowflake(new_fruit):
